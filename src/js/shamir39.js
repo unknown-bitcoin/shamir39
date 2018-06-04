@@ -1,10 +1,13 @@
 Shamir39 = function() {
 
-    var VERSION = "shamir39-p1";
+    var VERSION = "shamir39-pass";
+
+    var ASCII_LETTERS = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+    var BIN_LENGTH = 7;
 
     // Splits a BIP39 mnemonic into Shamir39 mnemonics.
     // No validation is done on the bip39 words.
-    this.split = function(bip39MnemonicWords, wordlist, m, n) {
+    this.split = function(phrase, wordlist, m, n) {
         // validate inputs
         if (m < 2) {
             return {
@@ -32,25 +35,14 @@ Shamir39 = function() {
                 error: "Wordlist must have 2048 words"
             };
         }
-        if (bip39MnemonicWords.length == 0) {
-            return {
-                error: "No bip39 mnemonic words provided"
-            };
-        }
-        // convert bip39 mnemonic into bits
+
         var binStr = "";
-        for (var i=0; i<bip39MnemonicWords.length; i++) {
-            var w = bip39MnemonicWords[i];
-            var index = wordlist.indexOf(w);
-            if (index == -1) {
-                var errorMsg = "Invalid word found in list: " + w;
-                return {
-                    error: errorMsg
-                };
-            }
-            var bits = index.toString(2);
-            bits = lpad(bits, 11);
-            binStr = binStr + bits;
+        try {
+            binStr = string2bin(phrase)
+        } catch(ex){
+            return {
+                error: ex
+            };
         }
         // pad mnemonic for use as hex
         var lenForHex = Math.ceil(binStr.length / 4) * 4;
@@ -176,20 +168,18 @@ Shamir39 = function() {
         var secretHex = combine(hexParts);
         // convert secret into mnemonic
         var secretBin = hex2bin(secretHex);
-        var totalWords = Math.floor(secretBin.length / 11);
-        var totalBits = totalWords * 11;
+        var totalLetters = Math.floor(secretBin.length / BIN_LENGTH);
+        var totalBits = totalLetters * BIN_LENGTH;
+
         var diff = secretBin.length - totalBits;
         secretBin = secretBin.substring(diff);
-        var mnemonic = [];
-        for (var i = 0; i<totalWords; i++) {
-            var wordIndexBin = secretBin.substring(i*11, (i+1)*11);
-            var wordIndex = parseInt(wordIndexBin, 2);
-            var word = wordlist[wordIndex];
-            mnemonic.push(word);
+        var phrase = "";
+        for (var i = 0; i<totalLetters; i++) {
+            var wordIndexBin = secretBin.substring(i * BIN_LENGTH, (i+1) * BIN_LENGTH);
+            var letter = bin2letter(wordIndexBin);
+            phrase += letter;
         }
-        return {
-            mnemonic: mnemonic
-        };
+        return phrase
     }
 
     // encodes the paramaters into a binary string
@@ -740,6 +730,24 @@ Shamir39 = function() {
         }
         return out;
     };
+
+    function string2bin(str){
+        ret = "";
+        for(var i=0;i<str.length;i++){
+            letter = str.substr(i,1);
+            index = ASCII_LETTERS.indexOf(letter);
+            if(index < 0){
+                throw new Error('invalid ascii letter ' + letter + '.');
+            }
+            ret += lpad(index.toString(2) , BIN_LENGTH);
+        }
+        return ret;
+    }
+
+    function bin2letter(bin) {
+        return ASCII_LETTERS.substr(parseInt(bin, 2),1);
+    }
+
 
     init(11); // 11 bits = 2048-1 shares maximum
 

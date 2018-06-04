@@ -86,12 +86,14 @@
             <p class="version">Version: Prototype-1</p>
             <div class="text-center text-extreme-danger">
             <p class="h1">
-            <strong>This is a prototype.</strong>
+            <strong>これは試作品です。This is a prototype.</strong>
             </p>
             <p class="h2">
+            このツールは実験用です。
             This tool should only be used for experiments.
             </p>
             <p class="h2">
+                このツール以外で同様の実装がないためこのツールがなくなると復元できなくなるので非常に危険です。<br>
             There are no alternative implementations, meaning you are
             <em>totally dependent on this tool</em> if you use it.
             That is a dangerous situation to be in.
@@ -106,89 +108,27 @@
             <h3>
             Changelog
             </h3>
-            <p>
-            <strong>Prototype-1</strong>
-            -
-            for shares starting with shamir39-p1
-            </p>
-            <ul>
-                <li>
-                    <strong>Breaking Change</strong>
-                    Change bits for shamir shares from 12 to 11.
-                    See
-                    <a href="https://github.com/iancoleman/shamir39/issues/2">
-                        https://github.com/iancoleman/shamir39/issues/2
-                    </a>
-                </li>
-                <li>
-                    Change version word from shamir39 to shamir39-p1
-                </li>
-                <li>
-                    Add version text
-                </li>
-                <li>
-                    View in the browser using
-                    <a href="https://web.archive.org/web/20171003054223/iancoleman.github.io/shamir39">
-                        archive.org/iancoleman.github.io/shamir39
-                    </a>
-                    <br>
-                    or download from
-                    <a href="https://github.com/iancoleman/shamir39/raw/b12d58d6d71a4db71ac9796e7d82c0a7691dd973/standalone.html">
-                        github.com/iancoleman/shamir39
-                    </a>
-                    (right-click save)
-                </li>
-            </ul>
-            <p>
-            <strong>Initial Unversioned Release</strong>
-            -
-            for shares starting with shamir39
-            </p>
-            <ul>
-                <li>
-                    View in the browser using
-                    <a href="https://web.archive.org/web/20170911001146/iancoleman.github.io/shamir39">
-                        archive.org/iancoleman.github.io/shamir39
-                    </a>
-                    <br>
-                    or download from
-                    <a href="https://github.com/iancoleman/shamir39/raw/ece6bde547ac2587067f8b04060b612441a625e5/standalone.html">
-                        github.com/iancoleman/shamir39
-                    </a>
-                    (right-click save)
-                </li>
-            </ul>
+                <p>
+                    <strong>Sharmir39 Pass Toolとしてフォーク</strong>
+                    -
+                    <a href="https://github.com/iancoleman/shamir39/">Sharmir39</a>をフォークしてBIP39に限らずどんな文字列でも分割できるように変更しました。<br>
+                    説明書きとか諸々フォーク元から未修正<br>
+                </p>
+                <ul>
+                    <li>
+                        パスワードとして使用可能な文字列はアスキー文字一通り<BR>
+                        " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+                    </li>
+                </ul>
             </div>
 
             <hr>
 
-            <h1 class="text-center">Shamir39 Tool</h1>
+            <h1 class="text-center">Shamir39 Pass Tool</h1>
             <div class="split row">
                 <div class="col-md-12">
                     <h2>Split</h2>
                     <form class="form-horizontal" role="form">
-                        <div class="form-group generate-container">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                                <div class="form-inline">
-                                    <div class="input-group-inline">
-                                        <span>Generate a random mnemonic, or enter your own below</span>:
-                                        <button class="btn generate">Generate</button>
-                                        <select id="strength" class="strength form-control">
-                                            <option value="3">3</option>
-                                            <option value="6">6</option>
-                                            <option value="9">9</option>
-                                            <option value="12">12</option>
-                                            <option value="15" selected>15</option>
-                                            <option value="18">18</option>
-                                            <option value="21">21</option>
-                                            <option value="24">24</option>
-                                        </select>
-                                        <span>words</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Mnemonic Language</label>
                             <div class="col-sm-10 languages">
@@ -204,7 +144,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="split-phrase" class="col-sm-2 control-label">BIP39 Mnemonic</label>
+                            <label for="split-phrase" class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-10">
                                 <textarea id="split-phrase" class="phrase form-control"></textarea>
                             </div>
@@ -244,7 +184,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="combine-phrase" class="col-sm-2 control-label">BIP39 Mnemonic</label>
+                            <label for="combine-phrase" class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-10">
                                 <textarea id="combine-phrase" class="phrase form-control" readonly></textarea>
                             </div>
@@ -311,7 +251,7 @@
                     <p>
                     <span>Alternatively, download the file from the repository</span>
                     -
-                    <a href="https://github.com/iancoleman/shamir39">https://github.com/iancoleman/shamir39</a>
+                    <a href="https://github.com/unknown-bitcoin/shamir39pass">https://github.com/unknown-bitcoin/shamir39pass</a>
                     </p>
 
                 </div>
@@ -327,7 +267,11 @@
                     <p>
                         <span>Get the source code from the repository</span>
                         -
-                        <a href="https://github.com/iancoleman/shamir39" target="_blank">
+                        <a href="https://github.com/unknown-bitcoin/shamir39pass" target="_blank">
+                            https://github.com/unknown-bitcoin/shamir39pass
+                        </a>
+
+                        fork from <a href="https://github.com/iancoleman/shamir39" target="_blank">
                             https://github.com/iancoleman/shamir39
                         </a>
                     </p>
@@ -1046,11 +990,14 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 </script>
         <script>Shamir39 = function() {
 
-    var VERSION = "shamir39-p1";
+    var VERSION = "shamir39-pass";
+
+    var ASCII_LETTERS = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+    var BIN_LENGTH = 7;
 
     // Splits a BIP39 mnemonic into Shamir39 mnemonics.
     // No validation is done on the bip39 words.
-    this.split = function(bip39MnemonicWords, wordlist, m, n) {
+    this.split = function(phrase, wordlist, m, n) {
         // validate inputs
         if (m < 2) {
             return {
@@ -1078,25 +1025,14 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 error: "Wordlist must have 2048 words"
             };
         }
-        if (bip39MnemonicWords.length == 0) {
-            return {
-                error: "No bip39 mnemonic words provided"
-            };
-        }
-        // convert bip39 mnemonic into bits
+
         var binStr = "";
-        for (var i=0; i<bip39MnemonicWords.length; i++) {
-            var w = bip39MnemonicWords[i];
-            var index = wordlist.indexOf(w);
-            if (index == -1) {
-                var errorMsg = "Invalid word found in list: " + w;
-                return {
-                    error: errorMsg
-                };
-            }
-            var bits = index.toString(2);
-            bits = lpad(bits, 11);
-            binStr = binStr + bits;
+        try {
+            binStr = string2bin(phrase)
+        } catch(ex){
+            return {
+                error: ex
+            };
         }
         // pad mnemonic for use as hex
         var lenForHex = Math.ceil(binStr.length / 4) * 4;
@@ -1222,20 +1158,18 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
         var secretHex = combine(hexParts);
         // convert secret into mnemonic
         var secretBin = hex2bin(secretHex);
-        var totalWords = Math.floor(secretBin.length / 11);
-        var totalBits = totalWords * 11;
+        var totalLetters = Math.floor(secretBin.length / BIN_LENGTH);
+        var totalBits = totalLetters * BIN_LENGTH;
+
         var diff = secretBin.length - totalBits;
         secretBin = secretBin.substring(diff);
-        var mnemonic = [];
-        for (var i = 0; i<totalWords; i++) {
-            var wordIndexBin = secretBin.substring(i*11, (i+1)*11);
-            var wordIndex = parseInt(wordIndexBin, 2);
-            var word = wordlist[wordIndex];
-            mnemonic.push(word);
+        var phrase = "";
+        for (var i = 0; i<totalLetters; i++) {
+            var wordIndexBin = secretBin.substring(i * BIN_LENGTH, (i+1) * BIN_LENGTH);
+            var letter = bin2letter(wordIndexBin);
+            phrase += letter;
         }
-        return {
-            mnemonic: mnemonic
-        };
+        return phrase
     }
 
     // encodes the paramaters into a binary string
@@ -1786,6 +1720,24 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
         }
         return out;
     };
+
+    function string2bin(str){
+        ret = "";
+        for(var i=0;i<str.length;i++){
+            letter = str.substr(i,1);
+            index = ASCII_LETTERS.indexOf(letter);
+            if(index < 0){
+                throw new Error('invalid ascii letter ' + letter + '.');
+            }
+            ret += lpad(index.toString(2) , BIN_LENGTH);
+        }
+        return ret;
+    }
+
+    function bin2letter(bin) {
+        return ASCII_LETTERS.substr(parseInt(bin, 2),1);
+    }
+
 
     init(11); // 11 bits = 2048-1 shares maximum
 
@@ -6203,11 +6155,13 @@ exports.BigInteger = BigInteger;
         setMnemonicLanguage();
         // Get the mnemonic phrase
         var phrase = DOM.splitPhrase.val();
+        /* ニーモニック以外でも何でも利用可能に
         var errorText = findPhraseErrors(phrase);
         if (errorText) {
             showValidationError(errorText);
             return;
         }
+        */
         // Calculate and display
         showSplitPhrase(phrase);
         hidePending();
@@ -6230,8 +6184,8 @@ exports.BigInteger = BigInteger;
             setMnemonicLanguage();
             var oldPhrase = DOM.splitPhrase.val();
             if (oldPhrase.length > 0) {
-                var newPhrase = convertPhraseToNewLanguage(oldPhrase);
-                DOM.splitPhrase.val(newPhrase);
+                //var newPhrase = convertPhraseToNewLanguage(oldPhrase);
+                //DOM.splitPhrase.val(newPhrase);
                 phraseChanged();
             }
             else {
@@ -6248,12 +6202,11 @@ exports.BigInteger = BigInteger;
     // Private methods
 
     function showSplitPhrase(phrase) {
-        var words = phraseToWordArray(phrase);
         var m = parseInt(DOM.parameterM.val());
         var n = parseInt(DOM.parameterN.val());
         var language = getLanguage(phrase);
         var wordlist = WORDLISTS[language];
-        var parts = shamir39.split(words, wordlist, m, n);
+        var parts = shamir39.split(phrase, wordlist, m, n);
         if ("error" in parts) {
             DOM.splitParts.val(parts.error);
             return;
@@ -6288,12 +6241,7 @@ exports.BigInteger = BigInteger;
         // combine the phrases into the original mnemonic
         var language = getLanguage(parts[0]);
         var wordlist = WORDLISTS[language];
-        var words = shamir39.combine(mnemonics, wordlist);
-        if ("error" in words) {
-            DOM.combinePhrase.val(words.error);
-            return;
-        }
-        var phrase = wordArrayToPhrase(words.mnemonic);
+        var phrase = shamir39.combine(mnemonics, wordlist);
         DOM.combinePhrase.val(phrase);
     }
 
@@ -6403,12 +6351,9 @@ exports.BigInteger = BigInteger;
 
     function getLanguage(phrase) {
         var defaultLanguage = "english";
-        // Try to get from existing phrase
-        var language = getLanguageFromPhrase(phrase);
-        // Try to get from url if not from phrase
-        if (language.length == 0) {
-            language = getLanguageFromUrl();
-        }
+        // Try to get from url
+        var language = language = getLanguageFromUrl();
+
         // Default to English if no other option
         if (language.length == 0) {
             language = defaultLanguage;

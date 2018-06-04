@@ -48,11 +48,13 @@
         setMnemonicLanguage();
         // Get the mnemonic phrase
         var phrase = DOM.splitPhrase.val();
+        /* ニーモニック以外でも何でも利用可能に
         var errorText = findPhraseErrors(phrase);
         if (errorText) {
             showValidationError(errorText);
             return;
         }
+        */
         // Calculate and display
         showSplitPhrase(phrase);
         hidePending();
@@ -75,8 +77,8 @@
             setMnemonicLanguage();
             var oldPhrase = DOM.splitPhrase.val();
             if (oldPhrase.length > 0) {
-                var newPhrase = convertPhraseToNewLanguage(oldPhrase);
-                DOM.splitPhrase.val(newPhrase);
+                //var newPhrase = convertPhraseToNewLanguage(oldPhrase);
+                //DOM.splitPhrase.val(newPhrase);
                 phraseChanged();
             }
             else {
@@ -93,12 +95,11 @@
     // Private methods
 
     function showSplitPhrase(phrase) {
-        var words = phraseToWordArray(phrase);
         var m = parseInt(DOM.parameterM.val());
         var n = parseInt(DOM.parameterN.val());
         var language = getLanguage(phrase);
         var wordlist = WORDLISTS[language];
-        var parts = shamir39.split(words, wordlist, m, n);
+        var parts = shamir39.split(phrase, wordlist, m, n);
         if ("error" in parts) {
             DOM.splitParts.val(parts.error);
             return;
@@ -133,12 +134,7 @@
         // combine the phrases into the original mnemonic
         var language = getLanguage(parts[0]);
         var wordlist = WORDLISTS[language];
-        var words = shamir39.combine(mnemonics, wordlist);
-        if ("error" in words) {
-            DOM.combinePhrase.val(words.error);
-            return;
-        }
-        var phrase = wordArrayToPhrase(words.mnemonic);
+        var phrase = shamir39.combine(mnemonics, wordlist);
         DOM.combinePhrase.val(phrase);
     }
 
@@ -248,12 +244,9 @@
 
     function getLanguage(phrase) {
         var defaultLanguage = "english";
-        // Try to get from existing phrase
-        var language = getLanguageFromPhrase(phrase);
-        // Try to get from url if not from phrase
-        if (language.length == 0) {
-            language = getLanguageFromUrl();
-        }
+        // Try to get from url
+        var language = language = getLanguageFromUrl();
+
         // Default to English if no other option
         if (language.length == 0) {
             language = defaultLanguage;

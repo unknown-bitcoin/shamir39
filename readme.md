@@ -1,10 +1,10 @@
-# Shamir39 Tool
+# Shamir39 Pass Tool
 
-A tool for converting BIP39 mnemonic phrases to shamir secret sharing scheme parts whilst retaining the benefit of mnemonics.
+A tool for converting password to shamir secret sharing scheme parts using  BIP39 mnemonic phrases.
 
 ## Online Version
 
-https://iancoleman.github.io/shamir39/
+https://unknown-bitcoin.sakura.ne.jp/ssss/
 
 ## Standalone offline version
 
@@ -19,7 +19,7 @@ This can be compiled from source using the command `python compile.py`
 TODO
 
 ## Donations
-
+aaa
 Since this project is the efforts of many people, most of which don't appear in
 the obvious places like code or issues, donating to the project itself causes
 significant operational difficulties.
@@ -53,5 +53,5 @@ TODO
 
 # License
 
-This Shamir39 tool is released under the terms of the MIT license. See LICENSE for
+This Shamir39 Pass tool is released under the terms of the MIT license. See LICENSE for
 more information or see https://opensource.org/licenses/MIT.
