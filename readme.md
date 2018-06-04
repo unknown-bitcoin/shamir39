@@ -19,7 +19,7 @@ This can be compiled from source using the command `python compile.py`
 TODO
 
 ## Donations
-aaa
+
 Since this project is the efforts of many people, most of which don't appear in
 the obvious places like code or issues, donating to the project itself causes
 significant operational difficulties.
