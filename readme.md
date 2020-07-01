@@ -4,7 +4,7 @@ A tool for converting password to shamir secret sharing scheme parts using  BIP3
 
 ## Online Version
 
-https://unknown-bitcoin.sakura.ne.jp/ssss/
+https://unknown-bitcoin.github.io/shamir39pass/src/
 
 ## Standalone offline version
 
